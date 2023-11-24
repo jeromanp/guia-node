@@ -1,0 +1,19 @@
+{
+  "name": "todocli",
+  "version": "1.0.0",
+  "description": "Un TodoList básico desde la CLI Node",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "Jose Eduardo Roman",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
