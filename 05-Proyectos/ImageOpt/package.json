@@ -1,0 +1,13 @@
+{
+  "name": "imageopt",
+  "version": "1.0.0",
+  "description": "Creando una app en Node para optimizar imágenes",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jose Eduardo Roman",
+  "license": "ISC"
+}
