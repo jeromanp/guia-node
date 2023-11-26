@@ -1,9 +1,9 @@
 import { get } from "https";
 
 const urlSite = {
-  hostname: "jonmircha.com",
+  hostname: "jeromanp.website",
   port: 443,
-  path: "/cursos",
+  path: "/proyectos",
 };
 
 get(urlSite, (res) => {
