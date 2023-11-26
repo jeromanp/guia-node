@@ -6,7 +6,7 @@ const require = createRequire(import.meta.url);
 const dotenv = require("dotenv");
 dotenv.config();
 
-const API_KEY = "af4cab36d572a61e35eaa9fd0169e654";
+const API_KEY = process.env.PUBLIC_OPENWEATHER_API_KEY;
 
 function displayWeather(city, weatherData) {
   console.log(chalk.yellow(`\nInformación del clima: ${city}:`));
