@@ -29,7 +29,7 @@ app.get("/plantilla", (req, res) => {
 });
 
 app.get("/jeromanp", (req, res) => {
-  //res.send("<h1>Bienvenidos a jonmircha.com</h1>");
+  //res.send("<h1>Bienvenidos a jeromanp.website</h1>");
   res.redirect(301, "https://jeromanp.website");
 });
 
