@@ -3,8 +3,8 @@ import path from "path";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-import taskController from "./controllers/taskController"
-import errorController from "./controllers/errorController";
+import taskController from "./controllers/taskController.js"
+import errorController from "./controllers/errorController.js";
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const app = express();
