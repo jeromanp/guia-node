@@ -3,7 +3,7 @@ import path from "path";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-import taskController from "./controllers/taskController.js"
+import taskController from "./controllers/taskController.js";
 import errorController from "./controllers/errorController.js";
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
@@ -33,5 +33,5 @@ app.get("/delete/:id", taskController.deleteTask);
 app.use(errorController.error404);
 
 app.listen(port, () => {
-  console.log(`Aplicación funcionando en http://localhost:${port}`);
+  console.log(`La aplicación está funcionando en http://localhost:${port}`);
 });
