@@ -7,14 +7,70 @@ const getAllTasks = (req, res) => {
   res.render("index", { title: "Lista de Tareas", tasks });
 };
 
+const getAddTaskForm = (req, res) => {
+  res.render("add", { title: "Agregar Tarea" });
+};
 
-const getAddTaskForm = (req, res) => {};
-const addTask = (req, res) => {};
-const getEditTaskForm = (req, res) => {};
-const editTask = (req, res) => {};
-const completeTask = (req, res) => {};
-const uncompleteTask = (req, res) => {};
-const deleteTask = (req, res) => {};
+const addTask = (req, res) => {
+  //console.log(req.body);
+  let { title } = req.body;
+  let id = tasks.length + 1;
+  tasks.push({ id, title, completed: false });
+  res.redirect("/");
+};
+
+const getEditTaskForm = (req, res) => {
+  let id = parseInt(req.params.id);
+  let task = tasks.find((task) => task.id === id);
+  //console.log(task);
+
+  if (!task) {
+    res.redirect("/");
+  } else {
+    res.render("edit", { title: "Editar Tarea", task });
+  }
+};
+
+const editTask = (req, res) => {
+  let id = parseInt(req.params.id);
+  let taskIndex = tasks.findIndex((task) => task.id === id);
+  //console.log(taskIndex);
+
+  if (taskIndex === -1) {
+    res.redirect("/");
+  } else {
+    tasks[taskIndex].title = req.body.title;
+    res.redirect("/");
+  }
+};
+
+const completeTask = (req, res) => {
+  let id = parseInt(req.params.id);
+  let task = tasks.find((task) => task.id === id);
+
+  if (task) {
+    task.completed = true;
+  }
+
+  res.redirect("/");
+};
+
+const uncompleteTask = (req, res) => {
+  let id = parseInt(req.params.id);
+  let task = tasks.find((task) => task.id === id);
+
+  if (task) {
+    task.completed = false;
+  }
+
+  res.redirect("/");
+};
+
+const deleteTask = (req, res) => {
+  let id = parseInt(req.params.id);
+  tasks = tasks.filter((task) => task.id !== id);
+  res.redirect("/");
+};
 
 export default {
   getAllTasks,
