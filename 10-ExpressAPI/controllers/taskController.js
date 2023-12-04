@@ -4,9 +4,8 @@ let tasks = [
 ];
 
 const getAllTasks = (req, res) => {
-  res.render("index", { title: "Lista de Tareas", tasks });
+  res.json({tasks})
 };
-
 
 const addTask = (req, res) => {
   //console.log(req.body);
