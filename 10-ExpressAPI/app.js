@@ -25,5 +25,5 @@ app.delete("/task/:id", taskController.deleteTask);
 app.use(errorController.error404);
 
 app.listen(port, () => {
-  console.log(`La API está funcionando en http://localhost/task:${port}`);
+  console.log(`La API está funcionando en http://localhost:${port}/task`);
 });
