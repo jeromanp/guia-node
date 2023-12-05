@@ -7,27 +7,26 @@ const getAllTasks = (req, res) => {
   res.json({ tasks });
 };
 
-const addTask = (req, res) => {
-  let { title } = req.body;
-  if (!title) {
-    res
-      .status(404)
-      .json({ error: true, message: "Falta el título de la tarea" });
-  } else {
-    let id = tasks.length + 1;
-    tasks.push({ id, title, completed: false });
-    res.json({ error: false, message: "Tarea Agregada" });
-  }
-};
-
 const getTask = (req, res) => {
   let id = parseInt(req.params.id);
   let taskIndex = tasks.findIndex((task) => task.id === id);
 
   if (taskIndex === -1) {
-    res.status(404).json({ error: true, message: "Tarea no encontrada" });
+    res.status(404).json({ err: true, message: "Tarea no encontrada" });
   } else {
     res.json({ task: tasks[taskIndex] });
+  }
+};
+
+const addTask = (req, res) => {
+  let { title } = req.body;
+
+  if (!title) {
+    res.status(404).json({ err: true, message: "Falta el título de la tarea" });
+  } else {
+    let id = tasks.length + 1;
+    tasks.push({ id, title, completed: false });
+    res.json({ err: false, message: "Tarea agregada" });
   }
 };
 
@@ -36,10 +35,10 @@ const editTask = (req, res) => {
   let taskIndex = tasks.findIndex((task) => task.id === id);
 
   if (taskIndex === -1) {
-    res.status(404).json({ error: true, message: "Tarea no encontrada" });
+    res.status(404).json({ err: true, message: "Tarea no encontrada" });
   } else {
     tasks[taskIndex].title = req.body.title;
-    res.json({ error: false, message: "Tarea Agregada" });
+    res.json({ err: false, message: "Tarea editada" });
   }
 };
 
@@ -49,9 +48,9 @@ const completeTask = (req, res) => {
 
   if (task) {
     task.completed = true;
-    res.json({ error: false, message: "Tarea Completada" });
+    res.json({ err: false, message: "Tarea completada" });
   } else {
-    res.status(404).json({ error: true, message: "Tarea no encontrada" });
+    res.status(404).json({ err: true, message: "Tarea no encontrada" });
   }
 };
 
@@ -61,9 +60,9 @@ const uncompleteTask = (req, res) => {
 
   if (task) {
     task.completed = false;
-    res.json({ error: false, message: "Tarea No Completada" });
+    res.json({ err: false, message: "Cambio a tarea NO completada" });
   } else {
-    res.status(404).json({ error: true, message: "Tarea no encontrada" });
+    res.status(404).json({ err: true, message: "Tarea no encontrada" });
   }
 };
 
@@ -72,17 +71,17 @@ const deleteTask = (req, res) => {
   let taskIndex = tasks.findIndex((task) => task.id === id);
 
   if (taskIndex === -1) {
-    res.status(404).json({ error: true, message: "Tarea no encontrada" });
+    res.status(404).json({ err: true, message: "Tarea no encontrada" });
   } else {
-    tasks.slice(taskIndex, 1);
-    res.json({ error: false, message: "Tarea Eliminada" });
+    tasks.splice(taskIndex, 1);
+    res.json({ err: false, message: "Tarea eliminada" });
   }
 };
 
 export default {
   getAllTasks,
-  addTask,
   getTask,
+  addTask,
   editTask,
   completeTask,
   uncompleteTask,
