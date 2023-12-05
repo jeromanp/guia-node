@@ -27,10 +27,14 @@ const files = await fs.readdir(pagesDir);
 // Aquí lógica para archivos html y md
 
 //Ruta de la página principal
-app.get("/", (req, res) => {});
-
-//Ruta del error 404
-app.use((req, res) => {});
+app.get("/", (req, res) => {
+    res.render("index");
+  });
+  
+  //Ruta del error 404
+  app.use((req, res) => {
+    res.status(404).render("error-404");
+  });
 
 app.listen(port, () =>
   console.log(`Sitio Web inicializado en htt-://localhost:${port}`)
