@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get("/task", taskController.getAllTasks);
 app.post("/task", taskController.addTask);
+app.get("/task/:id", taskController.getTask);
 app.put("/task/:id", taskController.editTask);
 app.put("/task/complete/:id", taskController.completeTask);
 app.put("/task/uncomplete/:id", taskController.uncompleteTask);
