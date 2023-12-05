@@ -9,9 +9,26 @@ const getAllTasks = (req, res) => {
 
 const addTask = (req, res) => {
   let { title } = req.body;
-  let id = tasks.length + 1;
-  tasks.push({ id, title, completed: false });
-  res.json({ error: false, message: "Tarea Agregada" });
+  if (!title) {
+    res
+      .status(404)
+      .json({ error: true, message: "Falta el título de la tarea" });
+  } else {
+    let id = tasks.length + 1;
+    tasks.push({ id, title, completed: false });
+    res.json({ error: false, message: "Tarea Agregada" });
+  }
+};
+
+const getTask = (req, res) => {
+  let id = parseInt(req.params.id);
+  let taskIndex = tasks.findIndex((task) => task.id === id);
+
+  if (taskIndex === -1) {
+    res.status(404).json({ error: true, message: "Tarea no encontrada" });
+  } else {
+    res.json({ task: tasks[taskIndex] });
+  }
 };
 
 const editTask = (req, res) => {
@@ -53,7 +70,7 @@ const uncompleteTask = (req, res) => {
 const deleteTask = (req, res) => {
   let id = parseInt(req.params.id);
   let taskIndex = tasks.findIndex((task) => task.id === id);
-  
+
   if (taskIndex === -1) {
     res.status(404).json({ error: true, message: "Tarea no encontrada" });
   } else {
@@ -65,6 +82,7 @@ const deleteTask = (req, res) => {
 export default {
   getAllTasks,
   addTask,
+  getTask,
   editTask,
   completeTask,
   uncompleteTask,
