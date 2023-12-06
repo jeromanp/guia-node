@@ -5,10 +5,15 @@ import markdownIt from "markdown-it";
 import fm from "front-matter";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 const app = express();
 const port = process.env.PORT || 3000;
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+// const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 app.use(morgan("dev"));
 app.use(express.json());
@@ -71,5 +76,5 @@ app.use((req, res) => {
 });
 
 app.listen(port, () =>
-  console.log(`Sitio Web inicializado en htt-://localhost:${port}`)
+  console.log(`Sitio Web inicializado en http://localhost:${port}`)
 );
